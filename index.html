@@ -3,21 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Angular Rigidity - Graph Catalog</title>
+    <title>Angular Rigidity - 5-Vertex Graph Catalog</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 0;
+            padding: 20px;
             background-color: #f5f5f5;
         }
         
         h1 {
             text-align: center;
             color: #333;
+            margin-bottom: 10px;
         }
         
-        .container {
-            max-width: 1200px;
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        
+        .controls {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .controls input {
+            padding: 8px 12px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 200px;
+        }
+        
+        .controls button {
+            padding: 8px 16px;
+            margin-left: 10px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .controls button:hover {
+            background-color: #0052a3;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1400px;
             margin: 0 auto;
         }
         
@@ -25,172 +65,121 @@
             background: white;
             border: 1px solid #ddd;
             border-radius: 8px;
-            padding: 20px;
-            margin: 15px 0;
+            overflow: hidden;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
         
-        .graph-title {
+        .graph-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        .graph-image {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            background-color: #f9f9f9;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        
+        .graph-info {
+            padding: 15px;
+        }
+        
+        .graph-number {
             font-size: 18px;
             font-weight: bold;
             color: #0066cc;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         
-        .links-section {
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid #eee;
-        }
-        
-        .link-label {
-            font-weight: bold;
+        .graph-details {
+            font-size: 12px;
             color: #666;
-            display: inline-block;
-            margin-right: 10px;
-            min-width: 100px;
+            line-height: 1.6;
         }
         
-        a {
-            color: #0066cc;
-            text-decoration: none;
-            margin-right: 20px;
-        }
-        
-        a:hover {
-            text-decoration: underline;
-        }
-        
-        .details {
-            margin-top: 10px;
-            font-size: 14px;
-            color: #555;
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+            grid-column: 1 / -1;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Angular Rigidity - 5-Vertex Graphs with 4-Color Chromatic Polynomial</h1>
-        
-        <!-- Graph 1 -->
-        <div class="graph-card">
-            <div class="graph-title">Graph 1: Complete Graph K₅</div>
-            <div class="details">
-                <p><strong>Vertices:</strong> 5 | <strong>Edges:</strong> 10 | <strong>Color:</strong> 4-colored</p>
-            </div>
-            <div class="links-section">
-                <div>
-                    <span class="link-label">Polynomial:</span>
-                    <a href="#poly-1">View Polynomial</a>
-                </div>
-                <div>
-                    <span class="link-label">Factors:</span>
-                    <a href="#factors-1">View Factors</a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Graph 2 -->
-        <div class="graph-card">
-            <div class="graph-title">Graph 2: Cycle Graph C₅</div>
-            <div class="details">
-                <p><strong>Vertices:</strong> 5 | <strong>Edges:</strong> 5 | <strong>Color:</strong> 4-colored</p>
-            </div>
-            <div class="links-section">
-                <div>
-                    <span class="link-label">Polynomial:</span>
-                    <a href="#poly-2">View Polynomial</a>
-                </div>
-                <div>
-                    <span class="link-label">Factors:</span>
-                    <a href="#factors-2">View Factors</a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Graph 3 -->
-        <div class="graph-card">
-            <div class="graph-title">Graph 3: Wheel Graph W₅</div>
-            <div class="details">
-                <p><strong>Vertices:</strong> 5 | <strong>Edges:</strong> 8 | <strong>Color:</strong> 4-colored</p>
-            </div>
-            <div class="links-section">
-                <div>
-                    <span class="link-label">Polynomial:</span>
-                    <a href="#poly-3">View Polynomial</a>
-                </div>
-                <div>
-                    <span class="link-label">Factors:</span>
-                    <a href="#factors-3">View Factors</a>
-                </div>
-            </div>
-        </div>
-        
-        <hr style="margin-top: 40px;">
-        
-        <h2>Polynomials & Factors</h2>
-        
-        <!-- Polynomial Details -->
-        <div class="graph-card">
-            <div class="graph-title" id="poly-1">Graph 1 - Chromatic Polynomial</div>
-            <div class="details">
-                <p><strong>P(k) = k(k-1)(k-2)(k-3)(k-4)</strong></p>
-                <p><strong>Related Graph:</strong> <a href="#graph-1">Back to Graph 1</a></p>
-            </div>
-        </div>
-        
-        <div class="graph-card">
-            <div class="graph-title" id="poly-2">Graph 2 - Chromatic Polynomial</div>
-            <div class="details">
-                <p><strong>P(k) = (k-1)⁵ + (-1)⁵(k-1)</strong></p>
-                <p><strong>Related Graph:</strong> <a href="#graph-2">Back to Graph 2</a></p>
-            </div>
-        </div>
-        
-        <div class="graph-card">
-            <div class="graph-title" id="poly-3">Graph 3 - Chromatic Polynomial</div>
-            <div class="details">
-                <p><strong>P(k) = k((k-1)⁴ - (k-1))</strong></p>
-                <p><strong>Related Graph:</strong> <a href="#graph-3">Back to Graph 3</a></p>
-            </div>
-        </div>
-        
-        <!-- Factors -->
-        <div class="graph-card">
-            <div class="graph-title" id="factors-1">Graph 1 - Factors</div>
-            <div class="details">
-                <p><strong>Factor 1:</strong> k</p>
-                <p><strong>Factor 2:</strong> (k-1)</p>
-                <p><strong>Factor 3:</strong> (k-2)</p>
-                <p><strong>Factor 4:</strong> (k-3)</p>
-                <p><strong>Factor 5:</strong> (k-4)</p>
-                <p><strong>Related Graph:</strong> <a href="#graph-1">Back to Graph 1</a></p>
-            </div>
-        </div>
-        
-        <div class="graph-card">
-            <div class="graph-title" id="factors-2">Graph 2 - Factors</div>
-            <div class="details">
-                <p><strong>Factor 1:</strong> (k-1)</p>
-                <p><strong>Factor 2:</strong> (k-1)</p>
-                <p><strong>Factor 3:</strong> (k-1)</p>
-                <p><strong>Factor 4:</strong> (k-1)</p>
-                <p><strong>Factor 5:</strong> (k-1)</p>
-                <p><strong>Related Graph:</strong> <a href="#graph-2">Back to Graph 2</a></p>
-            </div>
-        </div>
-        
-        <div class="graph-card">
-            <div class="graph-title" id="factors-3">Graph 3 - Factors</div>
-            <div class="details">
-                <p><strong>Factor 1:</strong> k</p>
-                <p><strong>Factor 2:</strong> (k-1)</p>
-                <p><strong>Factor 3:</strong> (k-1)</p>
-                <p><strong>Factor 4:</strong> (k-1)</p>
-                <p><strong>Factor 5:</strong> (k-1)</p>
-                <p><strong>Related Graph:</strong> <a href="#graph-3">Back to Graph 3</a></p>
-            </div>
-        </div>
+    <h1>Angular Rigidity - 5-Vertex Graph Catalog</h1>
+    <p class="subtitle">Complete collection of 5-vertex graphs with 4-color chromatic polynomial (Graphs 0-370)</p>
+    
+    <div class="controls">
+        <input type="text" id="searchInput" placeholder="Search by graph number...">
+        <button onclick="filterGraphs()">Search</button>
+        <button onclick="resetSearch()">Show All</button>
     </div>
+    
+    <div class="gallery" id="gallery"></div>
+    
+    <script>
+        const totalGraphs = 371; // Graphs 0-370
+        const gallery = document.getElementById('gallery');
+        
+        function createGraphCard(graphNumber) {
+            const card = document.createElement('div');
+            card.className = 'graph-card';
+            card.setAttribute('data-graph-number', graphNumber);
+            
+            const imageUrl = `graph_${graphNumber}.png`;
+            const imageHtml = `<img src="${imageUrl}" alt="Graph ${graphNumber}" class="graph-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22200%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2214%22 fill=%22%23999%22%3EGraph not found%3C/text%3E%3C/svg%3E'" />`;
+            
+            const infoHtml = `
+                <div class="graph-info">
+                    <div class="graph-number">Graph ${graphNumber}</div>
+                    <div class="graph-details">
+                        <p><strong>Vertices:</strong> 5</p>
+                        <p><strong>Chromatic:</strong> 4-colored</p>
+                    </div>
+                </div>
+            `;
+            
+            card.innerHTML = imageHtml + infoHtml;
+            return card;
+        }
+        
+        function loadAllGraphs() {
+            gallery.innerHTML = '';
+            for (let i = 0; i < totalGraphs; i++) {
+                gallery.appendChild(createGraphCard(i));
+            }
+        }
+        
+        function filterGraphs() {
+            const searchInput = document.getElementById('searchInput');
+            const searchValue = searchInput.value.trim();
+            
+            if (!searchValue) {
+                loadAllGraphs();
+                return;
+            }
+            
+            const graphNumber = parseInt(searchValue);
+            if (isNaN(graphNumber) || graphNumber < 0 || graphNumber >= totalGraphs) {
+                gallery.innerHTML = `<div class="no-results">No graphs found. Please enter a number between 0 and ${totalGraphs - 1}.</div>`;
+                return;
+            }
+            
+            gallery.innerHTML = '';
+            gallery.appendChild(createGraphCard(graphNumber));
+        }
+        
+        function resetSearch() {
+            document.getElementById('searchInput').value = '';
+            loadAllGraphs();
+        }
+        
+        // Load all graphs on page load
+        loadAllGraphs();
+    </script>
 </body>
 </html>

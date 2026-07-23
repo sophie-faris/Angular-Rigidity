@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angular Rigidity - 5-Vertex Graph Catalog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        
+        .controls {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .controls input {
+            padding: 8px 12px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 200px;
+        }
+        
+        .controls button {
+            padding: 8px 16px;
+            margin-left: 10px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .controls button:hover {
+            background-color: #0052a3;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .graph-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .graph-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        .graph-image {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            background-color: #f9f9f9;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        
+        .graph-info {
+            padding: 15px;
+        }
+        
+        .graph-number {
+            font-size: 18px;
+            font-weight: bold;
+            color: #0066cc;
+            margin-bottom: 8px;
+        }
+        
+        .graph-details {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+            grid-column: 1 / -1;
+        }
+    </style>
+</head>
+<body>
+    <h1>Angular Rigidity - 5-Vertex Graph Catalog</h1>
+    <p class="subtitle">Complete collection of 5-vertex graphs with 4-color chromatic polynomial (Graphs 0-370)</p>
+    
+    <div class="controls">
+        <input type="text" id="searchInput" placeholder="Search by graph number...">
+        <button onclick="filterGraphs()">Search</button>
+        <button onclick="resetSearch()">Show All</button>
+    </div>
+    
+    <div class="gallery" id="gallery"></div>
+    
+    <script>
+        const totalGraphs = 371; // Graphs 0-370
+        const gallery = document.getElementById('gallery');
+        
+        function createGraphCard(graphNumber) {
+            const card = document.createElement('div');
+            card.className = 'graph-card';
+            card.setAttribute('data-graph-number', graphNumber);
+            
+            // Image URL - keep it relative to the index.html location.
+            const imageUrl = `graph_${graphNumber}.png`;
+
+            // Prepare a simple SVG placeholder (data URL) to show if the image file isn't found.
+            const placeholderSvg = encodeURIComponent(
+                `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200">
+                    <rect width="100%" height="100%" fill="#f9f9f9" />
+                    <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#999" font-family="Arial, Helvetica, sans-serif" font-size="14">Image not available</text>
+                </svg>`
+            );
+
+            const imageHtml = `<img src="${imageUrl}" alt="Graph ${graphNumber}" class="graph-image" onerror="this.onerror=null; this.src='data:image/svg+xml,${placeholderSvg}'" />`;
+            
+            const infoHtml = `
+                <div class="graph-info">
+                    <div class="graph-number">Graph ${graphNumber}</div>
+                    <div class="graph-details">
+                        <p><strong>Vertices:</strong> 5</p>
+                        <p><strong>Chromatic:</strong> 4-colored</p>
+                    </div>
+                </div>
+            `;
+            
+            card.innerHTML = imageHtml + infoHtml;
+            return card;
+        }
+        
+        function loadAllGraphs() {
+            gallery.innerHTML = '';
+            for (let i = 0; i < totalGraphs; i++) {
+                gallery.appendChild(createGraphCard(i));
+            }
+        }
+        
+        function filterGraphs() {
+            const searchInput = document.getElementById('searchInput');
+            const searchValue = searchInput.value.trim();
+            
+            if (!searchValue) {
+                loadAllGraphs();
+                return;
+            }
+            
+            const graphNumber = parseInt(searchValue);
+            if (isNaN(graphNumber) || graphNumber < 0 || graphNumber >= totalGraphs) {
+                gallery.innerHTML = `<div class="no-results">No graphs found. Please enter a number between 0 and ${totalGraphs - 1}.</div>`;
+                return;
+            }
+            
+            gallery.innerHTML = '';
+            gallery.appendChild(createGraphCard(graphNumber));
+        }
+        
+        function resetSearch() {
+            document.getElementById('searchInput').value = '';
+            loadAllGraphs();
+        }
+        
+        // Load all graphs on page load
+        loadAllGraphs();
+    </script>
+</body>
+</html>

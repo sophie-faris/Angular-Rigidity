@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angular Rigidity - Graph Catalog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .graph-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .graph-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #0066cc;
+            margin-bottom: 10px;
+        }
+        
+        .links-section {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .link-label {
+            font-weight: bold;
+            color: #666;
+            display: inline-block;
+            margin-right: 10px;
+            min-width: 100px;
+        }
+        
+        a {
+            color: #0066cc;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .details {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Angular Rigidity - 5-Vertex Graphs with 4-Color Chromatic Polynomial</h1>
+        
+        <!-- Graph 1 -->
+        <div class="graph-card">
+            <div class="graph-title">Graph 1: Complete Graph K₅</div>
+            <div class="details">
+                <p><strong>Vertices:</strong> 5 | <strong>Edges:</strong> 10 | <strong>Color:</strong> 4-colored</p>
+            </div>
+            <div class="links-section">
+                <div>
+                    <span class="link-label">Polynomial:</span>
+                    <a href="#poly-1">View Polynomial</a>
+                </div>
+                <div>
+                    <span class="link-label">Factors:</span>
+                    <a href="#factors-1">View Factors</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Graph 2 -->
+        <div class="graph-card">
+            <div class="graph-title">Graph 2: Cycle Graph C₅</div>
+            <div class="details">
+                <p><strong>Vertices:</strong> 5 | <strong>Edges:</strong> 5 | <strong>Color:</strong> 4-colored</p>
+            </div>
+            <div class="links-section">
+                <div>
+                    <span class="link-label">Polynomial:</span>
+                    <a href="#poly-2">View Polynomial</a>
+                </div>
+                <div>
+                    <span class="link-label">Factors:</span>
+                    <a href="#factors-2">View Factors</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Graph 3 -->
+        <div class="graph-card">
+            <div class="graph-title">Graph 3: Wheel Graph W₅</div>
+            <div class="details">
+                <p><strong>Vertices:</strong> 5 | <strong>Edges:</strong> 8 | <strong>Color:</strong> 4-colored</p>
+            </div>
+            <div class="links-section">
+                <div>
+                    <span class="link-label">Polynomial:</span>
+                    <a href="#poly-3">View Polynomial</a>
+                </div>
+                <div>
+                    <span class="link-label">Factors:</span>
+                    <a href="#factors-3">View Factors</a>
+                </div>
+            </div>
+        </div>
+        
+        <hr style="margin-top: 40px;">
+        
+        <h2>Polynomials & Factors</h2>
+        
+        <!-- Polynomial Details -->
+        <div class="graph-card">
+            <div class="graph-title" id="poly-1">Graph 1 - Chromatic Polynomial</div>
+            <div class="details">
+                <p><strong>P(k) = k(k-1)(k-2)(k-3)(k-4)</strong></p>
+                <p><strong>Related Graph:</strong> <a href="#graph-1">Back to Graph 1</a></p>
+            </div>
+        </div>
+        
+        <div class="graph-card">
+            <div class="graph-title" id="poly-2">Graph 2 - Chromatic Polynomial</div>
+            <div class="details">
+                <p><strong>P(k) = (k-1)⁵ + (-1)⁵(k-1)</strong></p>
+                <p><strong>Related Graph:</strong> <a href="#graph-2">Back to Graph 2</a></p>
+            </div>
+        </div>
+        
+        <div class="graph-card">
+            <div class="graph-title" id="poly-3">Graph 3 - Chromatic Polynomial</div>
+            <div class="details">
+                <p><strong>P(k) = k((k-1)⁴ - (k-1))</strong></p>
+                <p><strong>Related Graph:</strong> <a href="#graph-3">Back to Graph 3</a></p>
+            </div>
+        </div>
+        
+        <!-- Factors -->
+        <div class="graph-card">
+            <div class="graph-title" id="factors-1">Graph 1 - Factors</div>
+            <div class="details">
+                <p><strong>Factor 1:</strong> k</p>
+                <p><strong>Factor 2:</strong> (k-1)</p>
+                <p><strong>Factor 3:</strong> (k-2)</p>
+                <p><strong>Factor 4:</strong> (k-3)</p>
+                <p><strong>Factor 5:</strong> (k-4)</p>
+                <p><strong>Related Graph:</strong> <a href="#graph-1">Back to Graph 1</a></p>
+            </div>
+        </div>
+        
+        <div class="graph-card">
+            <div class="graph-title" id="factors-2">Graph 2 - Factors</div>
+            <div class="details">
+                <p><strong>Factor 1:</strong> (k-1)</p>
+                <p><strong>Factor 2:</strong> (k-1)</p>
+                <p><strong>Factor 3:</strong> (k-1)</p>
+                <p><strong>Factor 4:</strong> (k-1)</p>
+                <p><strong>Factor 5:</strong> (k-1)</p>
+                <p><strong>Related Graph:</strong> <a href="#graph-2">Back to Graph 2</a></p>
+            </div>
+        </div>
+        
+        <div class="graph-card">
+            <div class="graph-title" id="factors-3">Graph 3 - Factors</div>
+            <div class="details">
+                <p><strong>Factor 1:</strong> k</p>
+                <p><strong>Factor 2:</strong> (k-1)</p>
+                <p><strong>Factor 3:</strong> (k-1)</p>
+                <p><strong>Factor 4:</strong> (k-1)</p>
+                <p><strong>Factor 5:</strong> (k-1)</p>
+                <p><strong>Related Graph:</strong> <a href="#graph-3">Back to Graph 3</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

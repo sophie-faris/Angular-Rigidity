@@ -84,6 +84,10 @@
             overflow: hidden;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
         }
         
         .graph-card:hover {
@@ -144,8 +148,9 @@
         const gallery = document.getElementById('gallery');
         
         function createGraphCard(graphNumber) {
-            const card = document.createElement('div');
+            const card = document.createElement('a');
             card.className = 'graph-card';
+            card.href = `Graph_${graphNumber}_pg.html`;
             card.setAttribute('data-graph-number', graphNumber);
             
             // Image URL - keep it relative to the index.html location.
